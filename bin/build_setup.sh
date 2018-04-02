@@ -92,6 +92,7 @@ fi
 mkdir -p "$RUNSWIFT_CHECKOUT_DIR"/ctc
 cd "$RUNSWIFT_CHECKOUT_DIR"/ctc
 
+export ASSETS_LOCATION="https://github.com/UNSWComputing/rUNSWift-assets/releases/download/v2017.1/"
 export LINUX_CTC_ZIP=ctc-linux64-atom-2.1.3.3.zip
 export OSX_CTC_ZIP=ctc-mac64-atom-2.1.3.3.zip
 export BOOST_1550_LIBS=boost1550libs.zip
@@ -106,17 +107,17 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
   if [ ! -f ${BOOST_HEADERS} ]; then
     echo "Downloading modified boost headers"
-    wget --continue --timestamping http://runswift.cse.unsw.edu.au/opennao2/build-2.1.3.3/${BOOST_HEADERS}
+    wget --continue --timestamping ${ASSETS_LOCATION}${BOOST_HEADERS}
   fi
 
   if [ ! -f ${BOOST_1550_LIBS} ];  then
     echo "Downloading pre-compiled boost 1.55.0 libs"
-    wget --continue --timestamping http://runswift.cse.unsw.edu.au/opennao2/build-2.1.3.3/${BOOST_1550_LIBS}
+    wget --continue --timestamping ${ASSETS_LOCATION}${BOOST_1550_LIBS}
   fi
 
   if [ ! -f ${LIBUUID} ]; then
     echo "Downloading libuuid.so.1.3.0"
-    wget --continue --timestamping http://runswift.cse.unsw.edu.au/opennao2/build-2.1.3.3/${LIBUUID}
+    wget --continue --timestamping ${ASSETS_LOCATION}${LIBUUID}
   fi
 
   if [ -f ${LINUX_CTC_ZIP} ]; then
@@ -169,7 +170,7 @@ mkdir -p "$CTC_DIR"/../sysroot_legacy/usr/
 myecho Downloading/extracting sysroot_legacy/usr, this may take a *long* time...
 SYSROOT_ARCHIVE="sysroot_legacy.tar.gz"
 if [ ! -f ${SYSROOT_ARCHIVE} ]; then
-  wget --continue --timestamping http://runswift.cse.unsw.edu.au/opennao2/build-2.1.3.3/${SYSROOT_ARCHIVE}
+  wget --continue --timestamping ${ASSETS_LOCATION}${SYSROOT_ARCHIVE}
   tar -zxf ${SYSROOT_ARCHIVE}
 fi
 ############ Building ###########
